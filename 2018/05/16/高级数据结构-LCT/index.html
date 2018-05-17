@@ -15,18 +15,20 @@
 
 
 
-<meta name="description" content="Wizard Cowboy终于有自己的博客啦     搞了半天终于基本成型了。。。">
-<meta name="keywords" content="其他">
+<meta name="description" content="问题类型   有时我们需要用一种数据结构去维护树形结构，并且支持删边加边操作。   这时我们就需要用到LCT了。">
+<meta name="keywords" content="LCT">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/05/11/Hello-World/index.html">
+<meta property="og:title" content="高级数据结构-LCT">
+<meta property="og:url" content="http://yoursite.com/2018/05/16/高级数据结构-LCT/index.html">
 <meta property="og:site_name" content="Wizard Cowboy&#39;s blog">
-<meta property="og:description" content="Wizard Cowboy终于有自己的博客啦     搞了半天终于基本成型了。。。">
+<meta property="og:description" content="问题类型   有时我们需要用一种数据结构去维护树形结构，并且支持删边加边操作。   这时我们就需要用到LCT了。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-12T00:56:36.799Z">
+<meta property="og:image" content="http://i2.bvimg.com/645283/347e8e97564a7a00.png">
+<meta property="og:updated_time" content="2018-05-17T10:36:21.256Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Wizard Cowboy终于有自己的博客啦     搞了半天终于基本成型了。。。">
+<meta name="twitter:title" content="高级数据结构-LCT">
+<meta name="twitter:description" content="问题类型   有时我们需要用一种数据结构去维护树形结构，并且支持删边加边操作。   这时我们就需要用到LCT了。">
+<meta name="twitter:image" content="http://i2.bvimg.com/645283/347e8e97564a7a00.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -58,7 +60,7 @@
 <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
 
-<title>Hello World | Wizard Cowboy&#39;s blog</title>
+<title>高级数据结构-LCT | Wizard Cowboy&#39;s blog</title>
 
 <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
@@ -262,11 +264,11 @@
     </div>
     <link class="menu-list" tags="标签" friends="友情链接" about="关于我"/>
 </nav>
-      <div class="body-wrap"><article id="post-Hello-World" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-高级数据结构-LCT" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2018/05/11/Hello-World/" class="article-date">
-      <time datetime="2018-05-11T11:21:10.000Z" itemprop="datePublished">2018-05-11</time>
+      <a href="/2018/05/16/高级数据结构-LCT/" class="article-date">
+      <time datetime="2018-05-16T04:30:42.000Z" itemprop="datePublished">2018-05-16</time>
 </a>
 
 
@@ -281,7 +283,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Hello World
+      高级数据结构-LCT
     </h1>
   
 
@@ -290,13 +292,13 @@
       <div class="article-info article-info-post">
         
     <div class="article-category tagcloud">
-    <a class="article-category-link" href="/categories/其他/">其他</a>
+    <a class="article-category-link" href="/categories/高级数据结构/">高级数据结构</a>
     </div>
 
 
         
     <div class="article-tag tagcloud">
-        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/其他/">其他</a></li></ul>
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LCT/">LCT</a></li></ul>
     </div>
 
         <div class="clearfix"></div>
@@ -306,8 +308,9 @@
     <div class="article-entry" itemprop="articleBody">
       
           
-        <p>Wizard Cowboy终于有自己的博客啦    </p>
-<p>搞了半天终于基本成型了。。。<br><a id="more"></a></p>
+        <h1 id="问题类型"><a href="#问题类型" class="headerlink" title="问题类型"></a>问题类型</h1><p>   有时我们需要用一种数据结构去维护树形结构，并且支持删边加边操作。<br>   这时我们就需要用到LCT了。<br><a id="more"></a></p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>  LCT全称是Link_Cut_Tree，也叫做动态树。<br>  LCT其实和轻重链剖分有些相似，我们给原树中的每个节点设置一个重儿子，到偏好儿子的边称为偏好边，一段连续的偏好边称为偏好链。<br>  我们用每个splay去维护每个偏好链，在splay中以节点的深度做为关键字。<br>  然后splay的根向splay深度最浅点在原树中的父亲连一条虚边。<br>  <img src="http://i2.bvimg.com/645283/347e8e97564a7a00.png" alt=""><br>  LCT的基本操作：<br>  Access(u): 把u到原树的根的路径上所有边都变成偏好边，并且把u的偏好儿子设为空。<br>  Make_Root(u): 把u变成原树的根。<br>  Find_Root(u): 找出u所在的树的根。<br>  Link(u, v): 连接u,v这条边<br>  Cut(u, v): 割除u, v这条边</p>
+<h1 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">LinkCutTree</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="keyword">int</span> rev[N + <span class="number">5</span>], val[N + <span class="number">5</span>], Son[N + <span class="number">5</span>][<span class="number">2</span>], Fa[N + <span class="number">5</span>], Stack[N + <span class="number">5</span>], top;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">up</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        val[u] = val[Son[u][<span class="number">0</span>]] ^ val[Son[u][<span class="number">1</span>]] ^ X[u];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">down</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!rev[u]) <span class="keyword">return</span>;</span><br><span class="line">        rev[Son[u][<span class="number">0</span>]] ^= <span class="number">1</span>, rev[Son[u][<span class="number">1</span>]] ^= <span class="number">1</span>, rev[u] ^= <span class="number">1</span>;</span><br><span class="line">        swap(Son[u][<span class="number">0</span>], Son[u][<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">isroot</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (Son[Fa[u]][<span class="number">0</span>] != u &amp;&amp; Son[Fa[u]][<span class="number">1</span>] != u);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Rotate</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> y = Fa[x], z = Fa[y];</span><br><span class="line">        <span class="keyword">int</span> l = Son[y][<span class="number">1</span>] == x, r = l ^ <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (!isroot(y)) Son[z][Son[z][<span class="number">1</span>] == y] = x;</span><br><span class="line">        Son[y][l] = Son[x][r], Fa[Son[x][r]] = y;</span><br><span class="line">        Son[x][r] = y, Fa[y] = x, Fa[x] = z;</span><br><span class="line">        up(y), up(x);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Splay</span><span class="params">(<span class="keyword">int</span> x)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Stack[top = <span class="number">1</span>] = x;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> y = x; !isroot(y); y = Fa[y]) Stack[++top] = Fa[y];</span><br><span class="line">        per(i, top, <span class="number">1</span>) down(Stack[i]);</span><br><span class="line">        <span class="keyword">while</span> (!isroot(x))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> y = Fa[x], z = Fa[y];</span><br><span class="line">            <span class="keyword">if</span> (!isroot(y))</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> ((Son[y][<span class="number">1</span>] == x) ^ (Son[z][<span class="number">1</span>] == y)) Rotate(x);</span><br><span class="line">                <span class="keyword">else</span> Rotate(y);</span><br><span class="line">            &#125;</span><br><span class="line">            Rotate(x);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Access</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> last = <span class="number">0</span>; u; last = u, u = Fa[u])</span><br><span class="line">            Splay(u), Son[u][<span class="number">1</span>] = last, up(u);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Make_Root</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Access(u), Splay(u), rev[u] ^= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">Find_Root</span><span class="params">(<span class="keyword">int</span> u)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Access(u), Splay(u);</span><br><span class="line">        <span class="keyword">while</span> (Son[u][<span class="number">0</span>]) u = Son[u][<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">return</span> u;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Split</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Make_Root(x), Access(y), Splay(y);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Link</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Make_Root(x);</span><br><span class="line">        <span class="keyword">if</span> (Find_Root(y) == x) <span class="keyword">return</span>;</span><br><span class="line">        Fa[x] = y;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">Cut</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Make_Root(x);</span><br><span class="line">        <span class="keyword">if</span> (Find_Root(y) != x || Fa[x] != y || Son[x][<span class="number">1</span>]) <span class="keyword">return</span>;</span><br><span class="line">        Fa[x] = Son[y][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;LCT;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -320,11 +323,17 @@
     <nav id="article-nav">
         
             <div id="article-nav-newer" class="article-nav-title">
-                <a href="/2018/05/12/高级数据结构-虚树/">
-                    高级数据结构-虚树
+                <a href="/2018/05/17/BZOJ-2002-弹飞绵羊/">
+                    [BZOJ-2002]弹飞绵羊
                 </a>
             </div>
         
+        
+            <div id="article-nav-older" class="article-nav-title">
+                <a href="/2018/05/15/BZOJ-3572-世界树/">
+                    [BZOJ-3572]世界树
+                </a>
+            </div>
         
     </nav>
 
@@ -334,7 +343,7 @@
     <div id="toc" class="toc-article">
         <strong class="toc-title">文章目录</strong>
         
-            
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#问题类型"><span class="toc-number">1.</span> <span class="toc-text">问题类型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#解决方案"><span class="toc-number">2.</span> <span class="toc-text">解决方案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码演示"><span class="toc-number">3.</span> <span class="toc-text">代码演示</span></a></li></ol>
         
     </div>
     <style>
@@ -370,7 +379,7 @@
         </div>
         <script>
             window._bd_share_config={
-                "common":{"bdSnsKey":{},"bdText":"Hello World　| Wizard Cowboy's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+                "common":{"bdSnsKey":{},"bdText":"高级数据结构-LCT　| Wizard Cowboy's blog　","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
         </script>
     
 
@@ -390,7 +399,7 @@
 
     <div class="scroll" id="post-nav-button">
         
-            <a href="/2018/05/12/高级数据结构-虚树/" title="上一篇: 高级数据结构-虚树">
+            <a href="/2018/05/17/BZOJ-2002-弹飞绵羊/" title="上一篇: [BZOJ-2002]弹飞绵羊">
                 <i class="fa fa-angle-left"></i>
             </a>
         
@@ -398,7 +407,9 @@
         <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
 
         
-            <a href="/" title="回到主页"><i class="fa fa-home"></i></a>
+            <a href="/2018/05/15/BZOJ-3572-世界树/" title="下一篇: [BZOJ-3572]世界树">
+                <i class="fa fa-angle-right"></i>
+            </a>
         
     </div>
 

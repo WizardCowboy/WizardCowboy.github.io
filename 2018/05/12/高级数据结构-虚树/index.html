@@ -23,10 +23,13 @@
 <meta property="og:site_name" content="Wizard Cowboy&#39;s blog">
 <meta property="og:description" content="问题类型   有些问题一次询问需要O(n)的复杂度，但多次询问时间复杂度会很大。   但如果我们只需要用到题目中给出的一些关键点和它们的LCA，并且给出的关键点个数总和并不多，我们可以求出它们的LCA，建成虚树，一次询问就变成了O(关键点个数)">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-12T00:55:56.241Z">
+<meta property="og:image" content="http://i4.bvimg.com/645283/c987a360a9610a7e.png">
+<meta property="og:image" content="http://i4.bvimg.com/645283/1acbea009f4b04cb.png">
+<meta property="og:updated_time" content="2018-05-16T05:23:08.915Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高级数据结构-虚树">
 <meta name="twitter:description" content="问题类型   有些问题一次询问需要O(n)的复杂度，但多次询问时间复杂度会很大。   但如果我们只需要用到题目中给出的一些关键点和它们的LCA，并且给出的关键点个数总和并不多，我们可以求出它们的LCA，建成虚树，一次询问就变成了O(关键点个数)">
+<meta name="twitter:image" content="http://i4.bvimg.com/645283/c987a360a9610a7e.png">
 
 <link rel="apple-touch-icon" href= "/apple-touch-icon.png">
 
@@ -185,7 +188,7 @@
                 
                 <section class="switch-part switch-part2">
                     <div class="widget tagcloud" id="js-tagcloud">
-                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/上下DP/">上下DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形DP/">树形DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚树/">虚树</a></li></ul>
+                        <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCT/">LCT</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/上下DP/">上下DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/树形DP/">树形DP</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/虚树/">虚树</a></li></ul>
                     </div>
                 </section>
                 
@@ -307,7 +310,7 @@
       
           
         <h1 id="问题类型"><a href="#问题类型" class="headerlink" title="问题类型"></a>问题类型</h1><p>   有些问题一次询问需要O(n)的复杂度，但多次询问时间复杂度会很大。<br>   但如果我们只需要用到题目中给出的一些关键点和它们的LCA，并且给出的关键点个数总和并不多，我们可以求出它们的LCA，建成虚树，一次询问就变成了O(关键点个数)<br><a id="more"></a></p>
-<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>   从上文得知，我们需要找出关键点的LCA并且建成虚树。<br>   这时我们就需要用到栈。（在后文我们简称关键点的LCA为重要点）<br>   我们用栈维护从根到当前关键点的路径上的重要点。<br>   我们先把关键点按DFS序从小到大排序。<br>   然后每次新枚举一个关键点u，求出它与栈顶v（上一个关键点）的LCA:w。<br>   如果u是v的子孙，那么w=v，直接把u加入栈即可。<br>   如果u不是v的子孙，那么w的深度一定比v要浅，所以我们就一直弹栈顶，知道栈顶的深度≤w的深度。<br>   这时如果栈顶不是w，再把w加入栈。最后再把当前关键点加入栈。<br>   我们在每次弹栈的时候，就把栈顶和相邻元素连边。（注意最后还要把栈弹空）</p>
+<h1 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h1><p>   从上文得知，我们需要找出关键点的LCA并且建成虚树。<br>   <img src="http://i4.bvimg.com/645283/c987a360a9610a7e.png" alt=""> <img src="http://i4.bvimg.com/645283/1acbea009f4b04cb.png" alt=""><br>   这时我们就需要用到栈。（在后文我们简称关键点的LCA为重要点）<br>   我们用栈维护从根到当前关键点的路径上的重要点。<br>   我们先把关键点按DFS序从小到大排序。<br>   然后每次新枚举一个关键点u，求出它与栈顶v（上一个关键点）的LCA:w。<br>   如果u是v的子孙，那么w=v，直接把u加入栈即可。<br>   如果u不是v的子孙，那么w的深度一定比v要浅，所以我们就一直弹栈顶，知道栈顶的深度≤w的深度。<br>   这时如果栈顶不是w，再把w加入栈。最后再把当前关键点加入栈。<br>   我们在每次弹栈的时候，就把栈顶和相邻元素连边。（注意最后还要把栈弹空）</p>
 <h1 id="代码演示"><a href="#代码演示" class="headerlink" title="代码演示"></a>代码演示</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Build</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    sort(X + <span class="number">1</span>, X + num + <span class="number">1</span>, cmp);</span><br><span class="line">    <span class="built_in">stack</span>[top = <span class="number">1</span>] = X[<span class="number">1</span>];</span><br><span class="line">    rep(i, <span class="number">2</span>, num)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">int</span> u = lca(X[i], <span class="built_in">stack</span>[top]);</span><br><span class="line">        <span class="keyword">while</span> (top &amp;&amp; Deep[<span class="built_in">stack</span>[top]] &gt; Deep[u])</span><br><span class="line">        &#123;</span><br><span class="line">            addedge(<span class="built_in">stack</span>[top], Deep[<span class="built_in">stack</span>[top - <span class="number">1</span>]] &lt; Deep[u] ? u : <span class="built_in">stack</span>[top - <span class="number">1</span>]);</span><br><span class="line">            top--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (!top || u != <span class="built_in">stack</span>[top]) <span class="built_in">stack</span>[++top] = u;</span><br><span class="line">        <span class="built_in">stack</span>[++top] = X[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span> (--top) addedge(<span class="built_in">stack</span>[top + <span class="number">1</span>]], <span class="built_in">stack</span>[top]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -411,7 +414,7 @@
         
     </div>
 
-    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/BZOJ-3572-世界树/">[BZOJ-3572]世界树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/12/BZOJ-2286-消耗战/">[BZOJ-2286]消耗战</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/12/高级数据结构-虚树/">高级数据结构-虚树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/11/Hello-World/">Hello World</a></li></ul>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/BZOJ-2049-洞穴勘测/">[BZOJ-2049]洞穴勘测</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/17/BZOJ-2002-弹飞绵羊/">[BZOJ-2002]弹飞绵羊</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/16/高级数据结构-LCT/">高级数据结构-LCT</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/15/BZOJ-3572-世界树/">[BZOJ-3572]世界树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/12/BZOJ-2286-消耗战/">[BZOJ-2286]消耗战</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/12/高级数据结构-虚树/">高级数据结构-虚树</a></li><li class="post-list-item"><a class="post-list-link" href="/2018/05/11/Hello-World/">Hello World</a></li></ul>
 
 
 
